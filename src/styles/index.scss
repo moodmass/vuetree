@@ -1,0 +1,84 @@
+//colors
+$black_1_5: rgba(0, 0, 0, .015);
+$color_mountain_mist_approx: #999;
+
+//@extend-elements
+//original selectors
+//.vue-tree li:after, .vue-tree li:before
+%extend_1 {
+  content: '';
+  left: -18px;
+  position: absolute;
+  right: auto;
+}
+
+
+.vue-tree {
+  font-size: 14px;
+  min-height: 20px;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 4px;
+  li {
+    margin: 0;
+    padding: 5px;
+    position: relative;
+    list-style: none;
+    > span {
+      line-height: 20px;
+      vertical-align: middle;
+    }
+    > i {
+      line-height: 20px;
+      vertical-align: middle;
+    }
+    > a {
+      line-height: 20px;
+      vertical-align: middle;
+      + a {
+        margin-left: 5px;
+      }
+    }
+    &:after {
+      @extend %extend_1;
+      border-top: 1px solid $color_mountain_mist_approx;
+      height: 20px;
+      top: 17px;
+      width: 22px;
+    }
+    &:before {
+      @extend %extend_1;
+      border-left: 1px solid $color_mountain_mist_approx;
+      bottom: 50px;
+      height: 100%;
+      top: -16px;
+      width: 1px;
+    }
+    span {
+      display: inline-block;
+      padding: 3px 5px;
+      text-decoration: none;
+    }
+    &:last-child::before {
+      height: 34px;
+    }
+    i.icon-open-state {
+      font-size: 16px;
+    }
+  }
+  > ul {
+    padding-left: 0;
+    > li::after {
+      border: 0;
+    }
+    > li:before {
+      border: 0;
+    }
+  }
+  ul ul {
+    padding-left: 24px;
+    padding-top: 10px;
+    li:hover {
+      background: $black_1_5;
+    }
+  }
+}
